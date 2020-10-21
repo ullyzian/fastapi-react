@@ -1,0 +1,19 @@
+{
+  "project_slug": "fastapi-react-project",
+  "project_name": "{{ cookiecutter.project_slug }}",
+  "domain": "localhost",
+
+  "secret_key": "changethis",
+  "superuser_email": "admin@{{cookiecutter.domain}}.com",
+  "superuser_password": "password",
+  "smtp_port": "587",
+  "smtp_host": "smtp.gmail.com",
+  "smtp_user": "",
+  "smtp_password": "",
+
+  "postgres_user": "postgres",
+  "postgres_password": "password",
+  "postgres_database": "database",
+
+  "flower_auth": "admin@{{cookiecutter.superuser_password}}"
+}

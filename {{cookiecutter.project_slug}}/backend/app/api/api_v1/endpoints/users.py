@@ -13,7 +13,7 @@ from app.crud.user import (
 from app.schemas.user import UserCreate, UserEdit, User
 from app.db.session import get_db
 
-users_router = r = APIRouter()
+router = r = APIRouter()
 
 
 @r.get(

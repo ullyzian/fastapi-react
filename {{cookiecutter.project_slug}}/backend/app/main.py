@@ -1,12 +1,10 @@
 import uvicorn
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
 from starlette.requests import Request
 
-from app.api.api_v1.routers.auth import auth_router
-from app.api.api_v1.routers.users import users_router
+from app.api.api_v1.api import api_router
 from app.core import config
-from app.core.auth import get_current_active_user
 from app.db.session import SessionLocal
 
 app = FastAPI(
@@ -39,13 +37,7 @@ async def db_session_middleware(request: Request, call_next):
 
 
 # Routers
-app.include_router(
-    users_router,
-    prefix="/api/v1",
-    tags=["users"],
-    dependencies=[Depends(get_current_active_user)],
-)
-app.include_router(auth_router, prefix="/api", tags=["auth"])
+app.include_router(api_router)
 
 app.openapi = redoc_openapi
 

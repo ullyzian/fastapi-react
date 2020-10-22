@@ -4,7 +4,9 @@ services:
     container_name: nginx
     image: nginx:1.17
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+#      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+
     ports:
       - 80:80
       - 443:443
@@ -49,7 +51,6 @@ services:
   flower:
     container_name: flower
     image: mher/flower
-    command: flower --broker=redis://redis:6379/0 --port=5555
     env_file:
       - .env
     ports:

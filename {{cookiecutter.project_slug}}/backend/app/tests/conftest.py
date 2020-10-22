@@ -5,14 +5,15 @@ from sqlalchemy_utils import database_exists, create_database, drop_database
 from fastapi.testclient import TestClient
 import typing as t
 
-from app.core import config, security
-from app.db.session import Base, get_db
+from app.core import security
+from app.core.config import settings
+from app.core.database import Base, get_db
 from app import models
 from app.main import app
 
 
 def get_test_db_url() -> str:
-    return f"{config.SQLALCHEMY_DATABASE_URI}_test"
+    return f"{settings.SQLALCHEMY_DATABASE_URI}_test"
 
 
 @pytest.fixture

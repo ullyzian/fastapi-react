@@ -1,7 +1,8 @@
 {
   "project_slug": "fastapi-react-project",
   "project_name": "{{ cookiecutter.project_slug }}",
-  "domain": "localhost",
+  "project_description": "My project with FastApi and React",
+  "domain": "example.com",
 
   "secret_key": "changethis",
   "superuser_email": "admin@{{cookiecutter.domain}}.com",

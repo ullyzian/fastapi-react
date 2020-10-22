@@ -23,7 +23,7 @@ jobs:
       - name: Prettify code
         uses: creyD/prettier_action@v2.2
         with:
-          prettier_options: --write **/*.{ts,tsx,md}
+          prettier_options: --write **/*.{js,jsx,ts,tsx,md}
       - name: Black Code Formatter
         uses: lgeiger/black-action@master
         with:

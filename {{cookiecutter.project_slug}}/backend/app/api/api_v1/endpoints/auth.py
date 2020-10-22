@@ -2,9 +2,10 @@ from fastapi.security import OAuth2PasswordRequestForm
 from fastapi import APIRouter, Depends, HTTPException, status
 from datetime import timedelta
 
-from app.db.session import get_db
+from app.core.database import get_db
 from app.core import security
-from app.core.auth import authenticate_user, sign_up_new_user
+from app.core.config import settings
+from app.api.dependencies import authenticate_user, sign_up_new_user
 
 router = r = APIRouter()
 
@@ -22,7 +23,7 @@ async def login(
         )
 
     access_token_expires = timedelta(
-        minutes=security.ACCESS_TOKEN_EXPIRE_MINUTES
+        minutes=settings.ACCESS_TOKEN_EXPIRATION
     )
     if user.is_superuser:
         permissions = "admin"
@@ -49,7 +50,7 @@ async def signup(
         )
 
     access_token_expires = timedelta(
-        minutes=security.ACCESS_TOKEN_EXPIRE_MINUTES
+        minutes=settings.ACCESS_TOKEN_EXPIRATION
     )
     if user.is_superuser:
         permissions = "admin"

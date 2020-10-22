@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
+import os
 
 from app.crud.user import create_user
-from app.db.session import SessionLocal
+from app.core.database import SessionLocal
 from app.schemas.user import UserCreate
 
 
@@ -11,8 +12,8 @@ def init() -> None:
     create_user(
         db,
         UserCreate(
-            email="{{cookiecutter.superuser_email}}",
-            password="{{cookiecutter.superuser_password}}",
+            email=os.getenv("SUPERUSER_EMAIL"),
+            password=os.getenv("SUPERUSER_PASSWORD"),
             is_active=True,
             is_superuser=True,
         ),

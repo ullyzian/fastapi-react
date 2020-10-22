@@ -1,4 +1,4 @@
-import { BACKEND_URL } from '../config';
+import { BACKEND_URL } from "../config";
 
 export const getMessage = async () => {
   const response = await fetch(BACKEND_URL);
@@ -9,5 +9,5 @@ export const getMessage = async () => {
     return data.message;
   }
 
-  return Promise.reject('Failed to get message from backend');
+  return Promise.reject("Failed to get message from backend");
 };

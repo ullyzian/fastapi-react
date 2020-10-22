@@ -1,18 +1,18 @@
-import React, { FC, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React, { FC, useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 
-import { getMessage } from '../utils/api';
-import { isAuthenticated } from '../utils/auth';
+import { getMessage } from "../utils/api";
+import { isAuthenticated } from "../utils/auth";
 
 const useStyles = makeStyles((theme) => ({
   link: {
-    color: '#61dafb',
+    color: "#61dafb",
   },
 }));
 
 export const Home: FC = () => {
-  const [message, setMessage] = useState<string>('');
-  const [error, setError] = useState<string>('');
+  const [message, setMessage] = useState<string>("");
+  const [error, setError] = useState<string>("");
   const classes = useStyles();
 
   const queryBackend = async () => {

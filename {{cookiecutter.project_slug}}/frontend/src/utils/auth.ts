@@ -1,11 +1,11 @@
-import decodeJwt from 'jwt-decode';
+import decodeJwt from "jwt-decode";
 
 export const isAuthenticated = () => {
-  const permissions = localStorage.getItem('permissions');
+  const permissions = localStorage.getItem("permissions");
   if (!permissions) {
     return false;
   }
-  return permissions === 'user' || permissions === 'admin';
+  return permissions === "user" || permissions === "admin";
 };
 
 /**
@@ -19,22 +19,22 @@ export const isAuthenticated = () => {
 export const login = async (email: string, password: string) => {
   // Assert email or password is not empty
   if (!(email.length > 0) || !(password.length > 0)) {
-    throw new Error('Email or password was not provided');
+    throw new Error("Email or password was not provided");
   }
   const formData = new FormData();
   // OAuth2 expects form data, not JSON data
-  formData.append('username', email);
-  formData.append('password', password);
+  formData.append("username", email);
+  formData.append("password", password);
 
-  const request = new Request('/api/v1/auth/token', {
-    method: 'POST',
+  const request = new Request("/api/v1/auth/token", {
+    method: "POST",
     body: formData,
   });
 
   const response = await fetch(request);
 
   if (response.status === 500) {
-    throw new Error('Internal server error');
+    throw new Error("Internal server error");
   }
 
   const data = await response.json();
@@ -46,10 +46,10 @@ export const login = async (email: string, password: string) => {
     throw data;
   }
 
-  if ('access_token' in data) {
+  if ("access_token" in data) {
     const decodedToken: any = decodeJwt(data.access_token);
-    localStorage.setItem('token', data.access_token);
-    localStorage.setItem('permissions', decodedToken.permissions);
+    localStorage.setItem("token", data.access_token);
+    localStorage.setItem("permissions", decodedToken.permissions);
   }
 
   return data;
@@ -71,29 +71,29 @@ export const signUp = async (
 ) => {
   // Assert email or password or password confirmation is not empty
   if (!(email.length > 0)) {
-    throw new Error('Email was not provided');
+    throw new Error("Email was not provided");
   }
   if (!(password.length > 0)) {
-    throw new Error('Password was not provided');
+    throw new Error("Password was not provided");
   }
   if (!(passwordConfirmation.length > 0)) {
-    throw new Error('Password confirmation was not provided');
+    throw new Error("Password confirmation was not provided");
   }
 
   const formData = new FormData();
   // OAuth2 expects form data, not JSON data
-  formData.append('username', email);
-  formData.append('password', password);
+  formData.append("username", email);
+  formData.append("password", password);
 
-  const request = new Request('/api/v1/auth/signup', {
-    method: 'POST',
+  const request = new Request("/api/v1/auth/signup", {
+    method: "POST",
     body: formData,
   });
 
   const response = await fetch(request);
 
   if (response.status === 500) {
-    throw new Error('Internal server error');
+    throw new Error("Internal server error");
   }
 
   const data = await response.json();
@@ -104,16 +104,16 @@ export const signUp = async (
     throw data;
   }
 
-  if ('access_token' in data) {
+  if ("access_token" in data) {
     const decodedToken: any = decodeJwt(data.access_token);
-    localStorage.setItem('token', data.access_token);
-    localStorage.setItem('permissions', decodedToken.permissions);
+    localStorage.setItem("token", data.access_token);
+    localStorage.setItem("permissions", decodedToken.permissions);
   }
 
   return data;
 };
 
 export const logout = () => {
-  localStorage.removeItem('token');
-  localStorage.removeItem('permissions');
+  localStorage.removeItem("token");
+  localStorage.removeItem("permissions");
 };

@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState } from "react";
 import {
   Paper,
   Grid,
@@ -6,14 +6,14 @@ import {
   Button,
   FormControlLabel,
   Checkbox,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { Face, Fingerprint } from '@material-ui/icons';
-import { Alert } from '@material-ui/lab';
-import { Redirect } from 'react-router-dom';
-import { useHistory } from 'react-router';
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Face, Fingerprint } from "@material-ui/icons";
+import { Alert } from "@material-ui/lab";
+import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router";
 
-import { login, isAuthenticated } from '../utils/auth';
+import { login, isAuthenticated } from "../utils/auth";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
   },
   button: {
-    textTransform: 'none',
+    textTransform: "none",
   },
   marginTop: {
     marginTop: 10,
@@ -33,17 +33,17 @@ const useStyles = makeStyles((theme) => ({
 export const Login: FC = () => {
   const classes = useStyles();
   const history = useHistory();
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [error, setError] = useState<string>('');
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
   const handleSubmit = async (_: React.MouseEvent) => {
-    setError('');
+    setError("");
     try {
       const data = await login(email, password);
 
       if (data) {
-        history.push('/');
+        history.push("/");
       }
     } catch (err) {
       if (err instanceof Error) {
@@ -126,15 +126,15 @@ export const Login: FC = () => {
           </Grid>
         </Grid>
         <Grid container justify="center" className={classes.marginTop}>
-          {' '}
+          {" "}
           <Button
             variant="outlined"
             color="primary"
             className={classes.button}
-            onClick={() => history.push('/signup')}
+            onClick={() => history.push("/signup")}
           >
             Sign Up
-          </Button>{' '}
+          </Button>{" "}
           &nbsp;
           <Button
             variant="outlined"

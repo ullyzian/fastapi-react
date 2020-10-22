@@ -1,10 +1,5 @@
-import React, { FC } from 'react';
-import {
-    Edit,
-    SimpleForm,
-    TextInput,
-    NumberInput,
-} from 'react-admin';
+import React, { FC } from "react";
+import { Edit, SimpleForm, TextInput, NumberInput } from "react-admin";
 
 export const ItemEdit: FC = (props) => (
   <Edit {...props}>

@@ -21,6 +21,7 @@ def init() -> None:
 
 
 if __name__ == "__main__":
+    # TODO: Add logging
     print("Creating superuser {{cookiecutter.superuser_email}}")
     init()
     print("Superuser created")

@@ -1,17 +1,11 @@
 import typing as t
 
-from fastapi import APIRouter, Request, Depends, Response
+from fastapi import APIRouter, Depends, Request, Response
 
-from app.api.dependencies import get_current_active_user, get_current_active_superuser
-from app.crud.user import (
-    get_users,
-    get_user,
-    create_user,
-    delete_user,
-    edit_user,
-)
-from app.schemas.user import UserCreate, UserEdit, User
+from app.api.dependencies import get_current_active_superuser, get_current_active_user
 from app.core.database import get_db
+from app.crud.user import (create_user, delete_user, edit_user, get_user, get_users)
+from app.schemas.user import User, UserCreate, UserEdit
 
 router = r = APIRouter()
 

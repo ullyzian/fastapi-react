@@ -1,8 +1,14 @@
+import logging
 import os
 import secrets
 from typing import Any, Dict, List, Optional, Union
 
 from pydantic import AnyHttpUrl, BaseSettings, PostgresDsn, RedisDsn, validator
+
+# TODO Make logging system here
+# Reference: https://docs.python.org/3/howto/logging.html
+# https://medium.com/@PhilippeGirard5/fastapi-logging-f6237b84ea64
+logging.basicConfig('test')
 
 
 class Settings(BaseSettings):

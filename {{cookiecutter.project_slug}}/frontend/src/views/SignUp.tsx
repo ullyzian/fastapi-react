@@ -1,12 +1,12 @@
-import React, { FC, useState } from 'react';
-import { Paper, Grid, TextField, Button } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { Face, Fingerprint } from '@material-ui/icons';
-import { Alert } from '@material-ui/lab';
-import { Redirect } from 'react-router-dom';
-import { useHistory } from 'react-router';
+import React, { FC, useState } from "react";
+import { Paper, Grid, TextField, Button } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Face, Fingerprint } from "@material-ui/icons";
+import { Alert } from "@material-ui/lab";
+import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router";
 
-import { signUp, isAuthenticated } from '../utils/auth';
+import { signUp, isAuthenticated } from "../utils/auth";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
   },
   button: {
-    textTransform: 'none',
+    textTransform: "none",
   },
   marginTop: {
     marginTop: 10,
@@ -26,21 +26,21 @@ const useStyles = makeStyles((theme) => ({
 export const SignUp: FC = () => {
   const classes = useStyles();
   const history = useHistory();
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
-  const [passwordConfirmation, setPasswordConfirmation] = useState<string>('');
-  const [error, setError] = useState<string>('');
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [passwordConfirmation, setPasswordConfirmation] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
   const handleSubmit = async (_: React.MouseEvent) => {
     // Password confirmation validation
-    if (password !== passwordConfirmation) setError('Passwords do not match');
+    if (password !== passwordConfirmation) setError("Passwords do not match");
     else {
-      setError('');
+      setError("");
       try {
         const data = await signUp(email, password, passwordConfirmation);
 
         if (data) {
-          history.push('/');
+          history.push("/");
         }
       } catch (err) {
         if (err instanceof Error) {

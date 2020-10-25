@@ -1,7 +1,7 @@
-import React, { FC } from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import React, { FC } from "react";
+import { Route, Redirect } from "react-router-dom";
 
-import { isAuthenticated } from '../utils/auth';
+import { isAuthenticated } from "../utils/auth";
 
 type PrivateRouteType = {
   component: React.ComponentType<any>;

@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import { Routes } from './Routes';
+import React, { FC } from "react";
+import { Routes } from "./Routes";
 
 const App: FC = () => <Routes />;
 

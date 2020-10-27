@@ -1,14 +1,8 @@
-import logging
 import os
 import secrets
 from typing import Any, Dict, List, Optional, Union
 
 from pydantic import AnyHttpUrl, BaseSettings, PostgresDsn, RedisDsn, validator
-
-# TODO Make logging system here
-# Reference: https://docs.python.org/3/howto/logging.html
-# https://medium.com/@PhilippeGirard5/fastapi-logging-f6237b84ea64
-logging.basicConfig('test')
 
 
 class Settings(BaseSettings):
@@ -73,6 +67,62 @@ class Settings(BaseSettings):
     SUPERUSER_PASSWORD: str = os.getenv("SUPERUSER_PASSWORD")
     ACCESS_TOKEN_EXPIRATION: int = 60 * 24  # in minutes
     USERS_OPEN_REGISTRATION: bool = False
+
+    # Logging
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': True,
+        'formatters': {
+            'detailed': {
+                'format': '%(asctime)s [%(levelname)s] %(name)s: %(message)s'
+            },
+            'simple': {
+                'format': '[%(levelname)s] %(name)s: %(message)s'
+            }
+        },
+        'handlers': {
+            'console': {
+                'level': 'INFO',
+                'formatter': 'simple',
+                'class': 'logging.StreamHandler',
+                'stream': 'ext://sys.stdout',  # Default is stderr
+            },
+            'file': {
+                'level': 'WARNING',
+                'formatter': 'detailed',
+                'class': 'logging.FileHandler',
+                'filename': 'errors.log',
+                'mode': 'a',
+            }
+        },
+        'loggers': {
+            '': {  # root logger
+                'handlers': ['console', 'file'],
+                'level': 'INFO',
+                'propagate': False
+            },
+            'alembic': {
+                'handlers': ['console'],
+                'level': 'INFO',
+                'propagate': False
+            },
+            'core': {
+                'handlers': ['console', 'file'],
+                'level': 'INFO',
+                'propagate': False
+            },
+            'crud': {
+                'handlers': ['console'],
+                'level': 'INFO',
+                'propagate': False
+            },
+            'api': {
+                'handlers': ['console'],
+                'level': 'INFO',
+                'propagate': False
+            },
+        }
+    }
 
     class Config:
         case_sensitive = True

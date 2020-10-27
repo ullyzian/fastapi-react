@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 import os
+import logging
 
 from app.crud.user import create_user
 from app.core.database import SessionLocal
 from app.schemas.user import UserCreate
+
+logger = logging.getLogger(__name__)
 
 
 def init() -> None:
@@ -21,7 +24,6 @@ def init() -> None:
 
 
 if __name__ == "__main__":
-    # TODO: Add logging
-    print("Creating superuser {{cookiecutter.superuser_email}}")
+    logger.info("Creating superuser {{cookiecutter.superuser_email}}")
     init()
-    print("Superuser created")
+    logger.info("Superuser created")
